@@ -1,0 +1,113 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fcedda;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.pokegame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.pokegame .row {
+  display: flex;
+}
+
+.pokegame .row>div {
+  flex: 1;
+  margin: 5px;
+}
+
+.pokedex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  background-color: #eed771;
+  border-radius: 8px;
+  padding: 3px;
+  padding-bottom: 36px;
+  margin: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pokedex.winner {
+  border: 2px solid rgba(11, 124, 60, 0.733);
+  border-width: 8px;
+}
+
+.winner-message {
+  margin-bottom: 27px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #f5f6f5;
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #47c16a;
+  padding: 10px 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokecard {
+  border: 2px solid #e3e3e3;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 15px;
+  text-align: center;
+  width: 200px;
+  height: 250px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.pokecard img {
+  width: 100%;
+  height: auto;
+  max-height: 100px;
+  /* Adjusted max-height for smaller images */
+  width: 110px;
+  max-width: 100%;
+  object-fit: cover;
+  /* Ensure the entire image is visible */
+  object-position: top;
+  /* Align the top of the image within the container */
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .pokecard {
+    width: 100%;
+  }
+
+  .pokecard img {
+    max-height: 120px;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .pokecard {
+    width: 100%;
+  }
+
+  .pokecard img {
+    max-height: 80px;
+  }
+}
