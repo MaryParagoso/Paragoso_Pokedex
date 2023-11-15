@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/*Pokegame.js*/
+import React, { useState, useEffect } from 'react';
 import Pokedex from './Pokedex';
 
 const Pokegame = ({ pokemon }) => {
@@ -11,9 +12,9 @@ const Pokegame = ({ pokemon }) => {
     return shuffledArray;
   };
 
-  const [exchangeCards, setExchangeCards] = useState(false);
+  const [shuffledPokemon, setShuffledPokemon] = useState(pokemon);
+  const [winner, setWinner] = useState(null);
 
-  const shuffledPokemon = exchangeCards ? shuffleArray(pokemon) : pokemon;
   const hand1 = shuffledPokemon.slice(0, 4);
   const hand2 = shuffledPokemon.slice(4);
 
@@ -27,16 +28,37 @@ const Pokegame = ({ pokemon }) => {
   const isWinner1 = totalExp1 > totalExp2;
   const isWinner2 = totalExp2 > totalExp1;
 
-  const handleExchangeCards = () => {
-    setExchangeCards(true);
+  const handleShuffleCards = () => {
+    const newShuffledPokemon = shuffleArray(pokemon);
+    setShuffledPokemon(newShuffledPokemon);
+    setWinner(null); // Reset the winner when shuffling
   };
+
+  // Determine the winner when the "Shuffle Cards" button is clicked
+  useEffect(() => {
+    if (isWinner1) {
+      setWinner('Player 1 is the Winner!');
+    } else if (isWinner2) {
+      setWinner('Player 2 is the Winner!');
+    } else {
+      setWinner('It\'s a Tie!');
+    }
+  }, [totalExp1, totalExp2]);
 
   return (
     <div className="pokegame">
-
       <div className="row">
-        <Pokedex pokemon={hand1} isWinner={isWinner1} playerName="Player 1" totalExp={totalExp1} />
-        <Pokedex pokemon={hand2} isWinner={isWinner2} playerName="Player 2" totalExp={totalExp2} />
+        <Pokedex pokemon={hand1} isWinner={isWinner1} playerName="PLAYER 1" />
+        <div className="middleClass">
+          <div className="logo">
+            {winner && <div className="winner-message">{winner}</div>}
+          </div>
+          <div className="mainFunction">
+            <button onClick={handleShuffleCards}>Shuffle Cards</button>
+            
+          </div>
+        </div>
+        <Pokedex pokemon={hand2} isWinner={isWinner2} playerName="PLAYER 2" />
       </div>
     </div>
   );

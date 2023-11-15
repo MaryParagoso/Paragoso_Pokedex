@@ -1,3 +1,4 @@
+/*Pokecard.js*/
 import React from 'react';
 
 const Pokecard = ({ id, name, type, base_experience }) => {
