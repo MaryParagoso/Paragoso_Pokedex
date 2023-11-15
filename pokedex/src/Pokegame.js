@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pokedex from './Pokedex';
 
 const Pokegame = ({ pokemon }) => {
@@ -11,7 +11,9 @@ const Pokegame = ({ pokemon }) => {
     return shuffledArray;
   };
 
-  const shuffledPokemon = shuffleArray(pokemon);
+  const [exchangeCards, setExchangeCards] = useState(false);
+
+  const shuffledPokemon = exchangeCards ? shuffleArray(pokemon) : pokemon;
   const hand1 = shuffledPokemon.slice(0, 4);
   const hand2 = shuffledPokemon.slice(4);
 
@@ -25,10 +27,17 @@ const Pokegame = ({ pokemon }) => {
   const isWinner1 = totalExp1 > totalExp2;
   const isWinner2 = totalExp2 > totalExp1;
 
+  const handleExchangeCards = () => {
+    setExchangeCards(true);
+  };
+
   return (
     <div className="pokegame">
-      <Pokedex pokemon={hand1} isWinner={isWinner1} />
-      <Pokedex pokemon={hand2} isWinner={isWinner2} />
+
+      <div className="row">
+        <Pokedex pokemon={hand1} isWinner={isWinner1} playerName="Player 1" totalExp={totalExp1} />
+        <Pokedex pokemon={hand2} isWinner={isWinner2} playerName="Player 2" totalExp={totalExp2} />
+      </div>
     </div>
   );
 };

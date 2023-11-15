@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import Pokegame from './Pokegame';
 
@@ -16,6 +15,7 @@ const pokemonList = [
 const App = () => {
   return (
     <div className="app">
+      <div className="background-image"></div>
       <Pokegame pokemon={pokemonList} />
     </div>
   );
